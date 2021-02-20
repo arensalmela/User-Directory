@@ -5,7 +5,7 @@ import "./App.css";
 export default class App extends Component {
   state = {
     people: [],
-    keys: ["", "First Name", "Last Name", "Relevant Info"],
+    keys: ["", "First", "Last", "Relevant Info"],
     search: "",
     
   
@@ -43,9 +43,21 @@ export default class App extends Component {
   };
 
   
-  
-  
 
+  handleSort = (term) => {
+    let search_Term = term.toLowerCase()
+    let names = ["first", "last"]
+    if (names.includes(search_Term)){
+      this.setState({
+        sorted: true,
+        people: this.state.people.sort((a,b) => a["name"][search_Term].localeCompare(b["name"]
+        [search_Term])),
+        ...this.state
+      })
+    }
+  }
+  
+  
   render() {
     return (
       <div className="App">
