@@ -121,7 +121,7 @@ export default class App extends Component {
                   <tr>
                   <td >{person.email}</td>
                   </tr>
-                  <td >{person.cell}</td>
+                  <td >Cell # {person.cell}</td>
                   <tr>
                     <td >{
                     person.location.city +
