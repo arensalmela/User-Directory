@@ -1,3 +1,5 @@
+//collaborated with https://github.com/ReindeerCode
+
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -98,6 +100,7 @@ export default class App extends Component {
         </button>
         <br></br>
         <br></br>
+        <h2>Click on First or Last Name Heading to Sort Alphabetically</h2>
         <table className = "table">
           <thead style={{ color: "black" }}>
             {this.state.keys.map((key, index) => {
