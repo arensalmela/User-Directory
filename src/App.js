@@ -31,10 +31,17 @@ export default class App extends Component {
     this.setState({ search: event.target.value });
   };
 
-  handleSearchClick = () => {
-    const search = this.state.search;
-    console.log(search);
-    const data = fetch(`https://randomuser.me/api/?gender=${search}`);
+  //Refresh page on click
+
+  handleRefresh = () => {
+    window.location.reload(true);
+  };
+
+  //Filter to random female
+
+  handleFirstClick = () => {
+   
+    const data = fetch(`https://randomuser.me/api/?gender=female`);
     data
       .then((response) => response.json())
       .then((response) => {
@@ -42,7 +49,20 @@ export default class App extends Component {
       });
   };
 
-  
+  //Filter to random male
+
+  handleSecondClick = () => {
+    
+    
+    const data = fetch(`https://randomuser.me/api/?gender=male`);
+    data
+      .then((response) => response.json())
+      .then((response) => {
+        this.setState({ people: response.results });
+      });
+  };
+
+  //Sort users alphabetically by first / last name
 
   handleSort = (term) => {
     let search_Term = term.toLowerCase()
@@ -62,15 +82,22 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>User Directory</h1>
-        <input
+        {/* <input
           type="text"
           value={this.state.search}
           onChange={this.handleInputChange}
-        />
-        <button type="button" onClick={this.handleSearchClick}>
-          Search
+        /> */}
+        
+        
+        <br></br>
+        <button type="button" onClick={this.handleFirstClick}>
+          Filter Female
         </button>
-
+        <button type="button" onClick={this.handleSecondClick}>
+          Filter Male
+        </button>
+        <br></br>
+        <br></br>
         <table className = "table">
           <thead style={{ color: "black" }}>
             {this.state.keys.map((key, index) => {
@@ -105,8 +132,12 @@ export default class App extends Component {
             ))}
           </tbody>
         </table>
+        <br></br>
+        <button type="button" onClick={this.handleRefresh}>
+          Refresh Page
+        </button>
 
-        <h2>Start editing to see some magic happen!</h2>
+      
       </div>
     );
   }
