@@ -5,8 +5,10 @@ import "./App.css";
 export default class App extends Component {
   state = {
     people: [],
-    keys: ["Name", "Cell Number", "Email", "Location"],
+    keys: ["", "First Name", "Last Name", "Relevant Info"],
     search: "",
+    
+  
   };
 
   componentDidMount() {
@@ -15,9 +17,11 @@ export default class App extends Component {
     data
       .then((response) => response.json())
       .then((response) => {
-        this.setState({ people: response.results });
+        this.setState({ people: response.results});
       });
   }
+
+ 
 
   componentWillUnmount() {
     console.log("I will unmount");
@@ -38,10 +42,14 @@ export default class App extends Component {
       });
   };
 
+  
+  
+  
+
   render() {
     return (
       <div className="App">
-        <h1>Hello CodeSandbox</h1>
+        <h1>User Directory</h1>
         <input
           type="text"
           value={this.state.search}
@@ -51,11 +59,11 @@ export default class App extends Component {
           Search
         </button>
 
-        <table class="table">
-          <thead style={{ color: "white" }}>
+        <table className = "table">
+          <thead style={{ color: "black" }}>
             {this.state.keys.map((key, index) => {
               return (
-                <th key={index} onClick={() => this.handleFilterClick(key)}>
+                <th key={index} onClick={() => this.handleSort(key)}>
                   {key}
                 </th>
               );
@@ -63,17 +71,24 @@ export default class App extends Component {
           </thead>
           <tbody>
             {this.state.people.map((person) => (
-              <tr>
-                <td>{person.name.first + " " + person.name.last}</td>
-                <td>{person.email}</td>
-                <td>{person.cell}</td>
-                <td>
-                  {person.location.postcode +
-                    ", " +
+              <tr key={person.email}>
+                <td><img src ={person.picture.medium}></img></td>
+                <td>{person.name.first}</td>
+                <td>{person.name.last}</td>
+                <tbody className = "table">
+                  <tr>
+                  <td >{person.email}</td>
+                  </tr>
+                  <td >{person.cell}</td>
+                  <tr>
+                    <td >{
                     person.location.city +
                     ", " +
-                    person.location.state}
-                </td>
+                    person.location.state}</td>
+                  </tr>
+                </tbody>
+                
+              
               </tr>
             ))}
           </tbody>
@@ -84,3 +99,6 @@ export default class App extends Component {
     );
   }
 }
+
+
+  
