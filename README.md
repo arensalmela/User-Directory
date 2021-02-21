@@ -1,6 +1,6 @@
 # User Directory
 
-## This app is deployed on...
+## This app is deployed on Heroku https://user-directory-ads.herokuapp.com/
 
 ### Collaborated with https://github.com/ReindeerCode
 
