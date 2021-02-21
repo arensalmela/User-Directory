@@ -113,6 +113,16 @@ export default class App extends Component {
                 <td><img src ={person.picture.medium}></img></td>
                 <td>{person.name.first}</td>
                 <td>{person.name.last}</td>
+                {/* <tr>
+                  <div class="card">
+                  <p>{person.email}</p>
+                  <p>{person.cell}</p>
+                  <p>{person.location.city +
+                    ", " +
+                    person.location.state}</p>
+                    </div>
+                    </tr> */}
+                
                 <tbody className = "table">
                   <tr>
                   <td >{person.email}</td>
