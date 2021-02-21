@@ -41,29 +41,26 @@ export default class App extends Component {
 
   //Filter to random female
 
-  handleFirstClick = () => {
+  // handleFirstClick = () => {
    
-    const data = fetch(`https://randomuser.me/api/?gender=female`);
-    data
-      .then((response) => response.json())
-      .then((response) => {
-        this.setState({ people: response.results });
-      });
+  //   const data = fetch(`https://randomuser.me/api/?gender=female`);
+  //   data
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       this.setState({ people: response.results });
+  //     });
+  // };
+
+  
+
+ 
+  handleFilterClick = () => {
+    const genders = this.state.people
+    console.log(genders)
+    let genderEntered = this.state.search.toLowerCase()
+    const filteredGenders = genders.filter(item => item.gender === genderEntered);
+    this.setState({ people: filteredGenders });
   };
-
-  //Filter to random male
-
-  handleSecondClick = () => {
-    
-    
-    const data = fetch(`https://randomuser.me/api/?gender=male`);
-    data
-      .then((response) => response.json())
-      .then((response) => {
-        this.setState({ people: response.results });
-      });
-  };
-
   //Sort users alphabetically by first / last name
 
   handleSort = (term) => {
@@ -84,20 +81,19 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>User Directory</h1>
-        {/* <input
+        <input
           type="text"
           value={this.state.search}
+          placeholder = "female"
           onChange={this.handleInputChange}
-        /> */}
+        />
         
         
         <br></br>
-        <button type="button" onClick={this.handleFirstClick}>
-          Filter Female
+        <button type="button" onClick={this.handleFilterClick}>
+          Filter by Gender
         </button>
-        <button type="button" onClick={this.handleSecondClick}>
-          Filter Male
-        </button>
+       
         <br></br>
         <br></br>
         <h2>Click on First or Last Name Heading to Sort Alphabetically</h2>
